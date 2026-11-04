@@ -37,7 +37,7 @@ export async function transcribeAudio(apiKey: string, file: File, signal?: Abort
     method: "POST",
     headers: { Authorization: `Bearer ${apiKey}` },
     body: form,
-    signal,
+    ...(signal ? { signal } : {}),
   });
   if (!res.ok || !res.body) throw new GatewayError(res.status, await readError(res));
 
@@ -103,7 +103,7 @@ export async function analyzeTranscript(
       },
     ],
     output: Output.object({ schema: analysisSchema }),
-    abortSignal: signal,
+    ...(signal ? { abortSignal: signal } : {}),
     providerOptions: {
       openai: {
         forceReasoning: true,

@@ -46,7 +46,10 @@ function NotePage() {
   async function remove() {
     if (!confirm("Delete this note?")) return;
     const { error } = await supabase.from("notes").delete().eq("id", id);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     await queryClient.invalidateQueries({ queryKey: notesQuery.queryKey });
     navigate({ to: "/brain" });
   }
