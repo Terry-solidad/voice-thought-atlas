@@ -14,7 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      notes: {
+        Row: {
+          created_at: string
+          duration_seconds: number
+          fts: unknown
+          id: string
+          summary: string
+          tags: string[]
+          title: string
+          transcript: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          duration_seconds?: number
+          fts?: unknown
+          id?: string
+          summary?: string
+          tags?: string[]
+          title?: string
+          transcript?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          duration_seconds?: number
+          fts?: unknown
+          id?: string
+          summary?: string
+          tags?: string[]
+          title?: string
+          transcript?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
